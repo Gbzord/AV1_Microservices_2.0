@@ -1,0 +1,19 @@
+{
+  "name": "av1-microservices",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run product\" \"npm run order\" \"npm run gateway\"",
+    "product": "npm --workspace=apps/product-service run dev",
+    "order": "npm --workspace=apps/order-service run dev",
+    "gateway": "npm --workspace=apps/api-gateway run dev",
+    "build": "npm --workspace=apps/product-service run build && npm --workspace=apps/order-service run build && npm --workspace=apps/api-gateway run build",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
